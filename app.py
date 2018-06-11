@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 # In[1]:
@@ -22,21 +21,24 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/test', methods=['POST'])
 def static_reply():
-    speech = "Hello there, this reply is from the webhook !! "
-    my_result =  {
-        "fulfillmentText": speech,
-        "source": "DialogFlow-python-webhook"
-    }
-    res = json.dumps(my_result, indent=4)
-    r = make_response(res)
-    r.headers['Content-Type'] = 'application/json'
-    return r
+	try :
+		req = request.get_json(silent=True, force=True)
+		print("Request:")
+		fulfillmentText = req.get("queryResult").get("fulfillmentText")
+		#speech = "Hello there, this reply is from the webhook !! "
+		my_result =  {
+		"fulfillmentText": fulfillmentText,
+		"source": "DialogFlow-python-webhook"
+		}
+		res = json.dumps(my_result, indent=4)
+		r = make_response(res)
+		r.headers['Content-Type'] = 'application/json'
+		return r
 
 
-if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5002))
+		if __name__ == '__main__':
+			port = int(os.getenv('PORT', 5002))
 
-    print("Starting app on port %d" % port)
+			print("Starting app on port %d" % port)
 
-    app.run(debug=True, port=port, host='0.0.0.0')
-
+			app.run(debug=True, port=port, host='0.0.0.0')
