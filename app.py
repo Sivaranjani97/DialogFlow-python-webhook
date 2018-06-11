@@ -20,8 +20,8 @@ app = Flask(__name__)
 
 @app.route('/')
 @app.route('/test', methods=['POST'])
-def static_reply():
-	try :
+def webhook():
+	
 		req = request.get_json(silent=True, force=True)
 		print("Request:")
 		speech = req.get("queryResult").get("fulfillmentText")
