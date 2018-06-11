@@ -24,8 +24,7 @@ app = Flask(__name__)
 def static_reply():
     speech = "Hello there, this reply is from the webhook !! "
     my_result =  {
-        "speech": speech,
-        "displayText": speech,
+        "fulfillmentText": speech,
         "source": "DialogFlow-python-webhook"
     }
     res = json.dumps(my_result, indent=4)
