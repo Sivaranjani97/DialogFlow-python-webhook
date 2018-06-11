@@ -36,9 +36,9 @@ def webhook():
 		return r
 
 
-		if __name__ == '__main__':
-			port = int(os.getenv('PORT', 5002))
+if __name__ == '__main__':
+	port = int(os.getenv('PORT', 5002))
 
-			print("Starting app on port %d" % port)
+	print("Starting app on port %d" % port)
 
-			app.run(debug=True, port=port, host='0.0.0.0')
+	app.run(debug=True, port=port, host='0.0.0.0')
