@@ -21,19 +21,18 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/test', methods=['POST'])
 def webhook():
-	
-		req = request.get_json(silent=True, force=True)
-		print("Request:")
-		speech = req.get("queryResult").get("intent").get("displayName")
+    req = request.get_json(silent=True, force=True)
+    print("Request:")
+    speech = req.get("queryResult").get("intent").get("displayName")
 		#speech = "Hello there, this reply is from the webhook !! "
-		my_result =  {
-		"fulfillmentText": speech,
-		"source": "DialogFlow-python-webhook"
-		}
-		res = json.dumps(my_result, indent=4)
-		r = make_response(res)
-		r.headers['Content-Type'] = 'application/json'
-		return r
+    my_result =  {
+	"fulfillmentText": speech,
+	"source": "DialogFlow-python-webhook"
+       }
+    res = json.dumps(my_result, indent=4)
+    r = make_response(res)
+    r.headers['Content-Type'] = 'application/json'
+    return r
 
 
 if __name__ == '__main__':
