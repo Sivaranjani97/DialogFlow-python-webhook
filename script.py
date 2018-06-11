@@ -26,7 +26,7 @@ def static_reply():
     my_result =  {
         "speech": speech,
         "displayText": speech,
-        "source": "apiai-weather-webhook-sample"
+        "source": "DialogFlow-python-webhook"
     }
     res = json.dumps(my_result, indent=4)
     r = make_response(res)
