@@ -24,10 +24,10 @@ def static_reply():
 	try :
 		req = request.get_json(silent=True, force=True)
 		print("Request:")
-		fulfillmentText = req.get("queryResult").get("fulfillmentText")
+		speech = req.get("queryResult").get("fulfillmentText")
 		#speech = "Hello there, this reply is from the webhook !! "
 		my_result =  {
-		"fulfillmentText": fulfillmentText,
+		"fulfillmentText": speech,
 		"source": "DialogFlow-python-webhook"
 		}
 		res = json.dumps(my_result, indent=4)
