@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 # In[ ]:
 
-
+@app.route('/')
 @app.route('/test', methods=['POST'])
 def static_reply():
     speech = "Hello there, this reply is from the webhook !! "
