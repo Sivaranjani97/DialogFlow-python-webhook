@@ -27,7 +27,7 @@ def webhook():
     #print("Request:")
     #speech = req['queryResult']['intent']['displayName']
     #speech = req.get("queryResult").get("intent").get("displayName")
-    with open ("Serge Kampf.csv","r") as csvfile:
+    with open ("../Serge Kampf.csv","r") as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         str = row[0]
