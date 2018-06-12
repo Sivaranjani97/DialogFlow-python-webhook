@@ -22,11 +22,11 @@ app = Flask(__name__)
 @app.route('/test', methods=['POST'])
 def webhook():
     
-    req = request.json
-    #req = request.get_json(silent=True, force=True)
+    #req = request.json
+    req = request.get_json(silent=True, force=True)
     #print("Request:")
     #speech = req['queryResult']['intent']['displayName']
-    speech = req.get('queryResult').get('intent').get('displayName')
+    speech = req.get("queryResult").get("intent").get("displayName")
 		#speech = "Hello there, this reply is from the webhook !! "
     my_result =  {
 	"fulfillmentText": speech,
