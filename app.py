@@ -6,6 +6,7 @@ import urllib
 import json
 import os
 import sys
+import csv
 
 from flask import Flask
 from flask import request
@@ -25,10 +26,15 @@ def webhook():
     req = request.get_json(silent=True, force=True)
     #print("Request:")
     #speech = req['queryResult']['intent']['displayName']
-    speech = req.get("queryResult").get("intent").get("displayName")
-		#speech = "Hello there, this reply is from the webhook !! "
+    #speech = req.get("queryResult").get("intent").get("displayName")
+    with open ("Serge Kampf.csv","r") as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader:
+        str = row[0]
+       
+	
     my_result =  {
-	"fulfillmentText": speech,
+	"fulfillmentText": str,
 	"source": "DialogFlow-python-webhook"
        }
     res = json.dumps(my_result, indent=4)
