@@ -27,13 +27,23 @@ def webhook():
     #req = request.json
     req = request.get_json(silent=True, force=True)
     #print("Request:")
-    #speech = req['queryResult']['intent']['displayName']
-    #speech = req.get("queryResult").get("intent").get("displayName")
-    url = 'https://raw.githubusercontent.com/Sivaranjani97/DialogFlow-python-webhook/master/Serge%20Kampf.csv'
-    response = urllib.request.urlopen(url)
+    
+    getIntent = req.get("queryResult").get("intent").get("displayName")
+    intent ="%20".join(getIntent.split(" "))
+    print(intent)
+    url = 'https://raw.githubusercontent.com/Sivaranjani97/DialogFlow-python-webhook/master/csvfiles/'
+    path = url+intent +".csv"
+    print(path)
+    response = urllib.request.urlopen(path)
     csvfile = csv.reader(codecs.iterdecode(response, 'utf-8'))
     for line in csvfile:
         resp = line[0]
+       # print(resp)
+   # url = 'https://raw.githubusercontent.com/Sivaranjani97/DialogFlow-python-webhook/master/Serge%20Kampf.csv'
+    #response = urllib.request.urlopen(url)
+   # csvfile = csv.reader(codecs.iterdecode(response, 'utf-8'))
+    #for line in csvfile:
+      #  resp = line[0]
         
        
 	
