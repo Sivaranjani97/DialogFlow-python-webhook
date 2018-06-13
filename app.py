@@ -7,6 +7,8 @@ import json
 import os
 import sys
 import csv
+import urllib.request
+import codecs
 
 from flask import Flask
 from flask import request
@@ -27,14 +29,16 @@ def webhook():
     #print("Request:")
     #speech = req['queryResult']['intent']['displayName']
     #speech = req.get("queryResult").get("intent").get("displayName")
-    with open ("../Serge Kampf.csv","r") as csvfile:
-    reader = csv.reader(csvfile)
-    for row in reader:
-        str = row[0]
+    url = 'https://raw.githubusercontent.com/Sivaranjani97/DialogFlow-python-webhook/master/Serge%20Kampf.csv'
+    response = urllib.request.urlopen(url)
+    csvfile = csv.reader(codecs.iterdecode(response, 'utf-8'))
+    for line in csvfile:
+        resp = line[0]
+        
        
 	
     my_result =  {
-	"fulfillmentText": str,
+	"fulfillmentText": resp,
 	"source": "DialogFlow-python-webhook"
        }
     res = json.dumps(my_result, indent=4)
