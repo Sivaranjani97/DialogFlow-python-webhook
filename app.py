@@ -13,9 +13,8 @@ from flask import Flask
 from flask import request	
 from flask import make_response
 
-from nltk.tokenize import word_tokenize
-import nltk
-#nltk.download('punkt')
+
+
 import fileinput
 import sys
 
@@ -55,7 +54,7 @@ def webhook():
     if(getIntent == "Default Fallback Intent"):
        
         getQuery = req.get("queryResult").get("queryText")
-        word_tokens = word_tokenize(getQuery) 
+        word_tokens = getQuery.split()
         filtered_sentence = []
  
         for w in word_tokens:
