@@ -59,7 +59,7 @@ def webhook():
  
         for w in word_tokens:
             if w not in stop_words:
-            filtered_sentence.append(w)
+                filtered_sentence.append(w)
         
 
         key = " ".join(filtered_sentence)
@@ -130,8 +130,8 @@ def webhook():
         return r
 
 # 4 MAKE THE REQUEST 
-       response = requests.post(url,headers=headers,data=data)
-       print (response.json)
+        response = requests.post(url,headers=headers,data=data)
+        print (response.json)
     
     else:
         intent ="%20".join(getIntent.split(" "))
