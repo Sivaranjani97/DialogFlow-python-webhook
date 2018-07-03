@@ -120,6 +120,9 @@ def webhook():
 
 
         data = json.dumps(body,indent = 4 )
+	response = requests.post(url,headers=headers,data=data)
+        print (response.json)
+	
         my_result =  {
 	      "fulfillmentText": "Sorry i didnt get that from webhook",
 	       "source": "DialogFlow-python-webhook"
@@ -130,8 +133,7 @@ def webhook():
         return r
 
 # 4 MAKE THE REQUEST 
-        response = requests.post(url,headers=headers,data=data)
-        print (response.json)
+        
     
     else:
         intent ="%20".join(getIntent.split(" "))
